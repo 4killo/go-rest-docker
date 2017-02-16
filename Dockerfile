@@ -14,12 +14,12 @@ RUN go-wrapper install
 # Set the PORT environment variable inside the container
 ENV PORT 8080
 
-# Build the customerservice command inside the container.
+# Build the service command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
 RUN go install github.com/4killo/go-rest-docker
 
-# Run the customerservice command by default when the container starts.
+# Run the service command by default when the container starts.
 ENTRYPOINT /go/bin/go-rest-docker
 
 # Document that the service listens on port 8080.
