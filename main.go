@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/4killo/go-rest-docker/data"
+	"github.com/4killo/go-rest-docker/service"
 	"github.com/gorilla/mux"
-	"lb.com/customerservice/data"
-	"lb.com/customerservice/service"
 
 	_ "net/http/pprof"
 

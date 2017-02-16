@@ -8,7 +8,7 @@ import (
 )
 
 func connect() *sql.DB {
-	db, err := sql.Open("mysql", "your my sql url")
+	db, err := sql.Open("mysql", "my sql url")
 	if err != nil {
 		log.Fatal("Could not connect to database", err.Error())
 	}

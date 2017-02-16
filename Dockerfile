@@ -3,10 +3,10 @@
 FROM golang:latest
 
 
-RUN mkdir -p /go/src/lb.com/customerservice
-WORKDIR /go/src/lb.com/customerservice
+RUN mkdir -p /go/src/github.com/4killo/go-rest-docker
+WORKDIR /go/src/github.com/4killo/go-rest-docker
 # Copy the local package files to the container's workspace.
-COPY . /go/src/lb.com/customerservice
+COPY . /go/src/github.com/4killo/go-rest-docker
 
 RUN go-wrapper download
 RUN go-wrapper install
@@ -17,10 +17,10 @@ ENV PORT 8080
 # Build the customerservice command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN go install lb.com/customerservice
+RUN go install github.com/4killo/go-rest-docker
 
 # Run the customerservice command by default when the container starts.
-ENTRYPOINT /go/bin/customerservice
+ENTRYPOINT /go/bin/go-rest-docker
 
 # Document that the service listens on port 8080.
 EXPOSE 8080
