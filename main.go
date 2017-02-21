@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -15,6 +16,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+func healthCheck(res http.ResponseWriter, req *http.Request) {
+	res.Write([]byte("Good!"))
+}
+
 func insertCard(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-Type", "application/json")
 
@@ -22,10 +27,7 @@ func insertCard(res http.ResponseWriter, req *http.Request) {
 	b, _ := ioutil.ReadAll(req.Body)
 	json.Unmarshal(b, &paymentRequest)
 	//fmt.Println("request:", paymentRequest)
-	st, err := service.Insert(&paymentRequest)
-	if err != nil {
-		res.WriteHeader(st)
-	}
+	st, _ := service.Insert(&paymentRequest)
 	res.WriteHeader(st)
 
 	// fmt.Println("request:", paymentRequest)
@@ -43,7 +45,7 @@ func getCards(res http.ResponseWriter, req *http.Request) {
 
 	//we can use this log form or below encoding
 	// j, _ := json.Marshal(GetCards(&paymentRequest))
-	// fmt.Println(paymentRequest)
+	fmt.Println(paymentRequest)
 	// res.Write(j)
 
 	json.NewEncoder(res).Encode(service.GetCards(&paymentRequest))
@@ -52,6 +54,7 @@ func getCards(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	r := mux.NewRouter()
+	r.HandleFunc("/healthcheck", healthCheck).Methods("GET")
 	r.HandleFunc("/payment/cards/add", insertCard).Methods("POST")
 	r.HandleFunc("/payment/cards", getCards).Methods("POST")
 

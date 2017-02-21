@@ -1,0 +1,18 @@
+version: '2'
+services:
+  users-service:
+    build: .
+    container_name: service
+    ports:
+     - "10000:80"
+    links:
+      - db:db
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+  db:
+    build: ./test-db
+    mem_limit: 500m
+    ports:
+      - "3306:3306"

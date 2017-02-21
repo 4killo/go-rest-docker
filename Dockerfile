@@ -12,7 +12,7 @@ RUN go-wrapper download
 RUN go-wrapper install
 
 # Set the PORT environment variable inside the container
-ENV PORT 8080
+ENV PORT 80
 
 # Build the service command inside the container.
 # (You may fetch or manage dependencies here,
@@ -22,5 +22,5 @@ RUN go install github.com/4killo/go-rest-docker
 # Run the service command by default when the container starts.
 ENTRYPOINT /go/bin/go-rest-docker
 
-# Document that the service listens on port 8080.
-EXPOSE 8080
+# Document that the service listens on port 80.
+EXPOSE 80

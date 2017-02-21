@@ -1,0 +1,9 @@
+test:
+  build: .
+  dockerfile: Dockerfile.test
+  links:
+    - service
+service:
+  build: .
+  dockerfile: Dockerfile
+  

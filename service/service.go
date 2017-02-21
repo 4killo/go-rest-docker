@@ -32,8 +32,12 @@ func Insert(r *data.Request) (int, error) {
 func GetCards(r *data.Request) []data.CardDetail {
 	db := connect()
 	defer db.Close()
+	fmt.Println("Data = " + r.Email + r.Brand)
+	results, err := db.Query("SELECT gift_card_number, pin, currency from gift_cards  where id = ? and brand = ?", r.Email, r.Brand)
 
-	results, _ := db.Query("SELECT gift_card_number, pin, currency from gift_cards  where id = ? and brand = ?", r.Email, r.Brand)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	var cardDetails []data.CardDetail
 
@@ -43,8 +47,10 @@ func GetCards(r *data.Request) []data.CardDetail {
 		if err != nil {
 			log.Print(err.Error())
 		}
+		fmt.Println(cardDetail.CardNum + " " + cardDetail.PinNum)
 		cardDetail.CardType = data.DEFAULT
 		cardDetails = append(cardDetails, cardDetail)
 	}
+	fmt.Println(cardDetails)
 	return cardDetails
 }
