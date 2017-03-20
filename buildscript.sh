@@ -2,7 +2,6 @@
 name=ci
 docker-compose -f docker-compose.test.yml -p $name build
 docker-compose -f docker-compose.test.yml -p $name up -d
-#docker wait ci_test_1
 
 if [ $(docker wait ${name}_test_1) -eq 0 ]
 then
