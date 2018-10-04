@@ -2,14 +2,10 @@
 # and a workspace (GOPATH) configured at /go.
 FROM golang:latest
 
-
-RUN mkdir -p /go/src/github.com/4killo/go-rest-docker
-WORKDIR /go/src/github.com/4killo/go-rest-docker
 # Copy the local package files to the container's workspace.
-COPY . /go/src/github.com/4killo/go-rest-docker
+ADD . /go/src/github.com/4killo/go-rest-docker
 
-RUN go-wrapper download
-RUN go-wrapper install
+
 
 # Set the PORT environment variable inside the container
 ENV PORT 80

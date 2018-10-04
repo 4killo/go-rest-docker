@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 services:
   users-service:
     build: .
@@ -9,8 +9,10 @@ services:
       - db:db
     depends_on:
      - db
+    cpus: 1
     environment:
      - DATABASE_HOST=db
+
   db:
     build: ./test-db
     mem_limit: 500m
