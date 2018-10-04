@@ -8,7 +8,7 @@ ADD . /go/src/github.com/4killo/go-rest-docker
 
 
 # Set the PORT environment variable inside the container
-ENV PORT 8080
+ENV PORT 80
 
 
 # Build the service command inside the container.
@@ -20,4 +20,4 @@ RUN go install github.com/4killo/go-rest-docker
 ENTRYPOINT /go/bin/go-rest-docker
 
 # Document that the service listens on port 80.
-EXPOSE 8080
+EXPOSE 80
